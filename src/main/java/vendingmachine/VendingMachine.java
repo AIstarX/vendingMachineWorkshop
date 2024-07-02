@@ -1,10 +1,10 @@
 package vendingmachine;
 
-import model.product;
+import model.Product;
 
-public interface vendingmachine {
+public interface VendingMachine {
     void addCurrency(int amount);
-    product request(int productId);
+    Product request(int productId);
     int endSession();
     String getDescription(int productId);
     int getBalance();

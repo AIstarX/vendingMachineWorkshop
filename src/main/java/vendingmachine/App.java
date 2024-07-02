@@ -1,10 +1,10 @@
 package vendingmachine;
 
-import model.product;
+import model.Product;
 
-public class app {
+public class App {
     public static void main(String[] args) {
-        vendingmachine vm = new candyvendingmachine();
+        VendingMachine vm = new CandyVendingMachine();
 
         vm.addCurrency(50);
         System.out.println("Balance: " + vm.getBalance());
@@ -13,7 +13,7 @@ public class app {
             System.out.println(product);
         }
 
-        product purchasedProduct = vm.request(1);
+        Product purchasedProduct = vm.request(1);
         System.out.println("Purchased: " + purchasedProduct.getDescription());
 
         int change = vm.endSession();

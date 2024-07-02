@@ -1,38 +1,44 @@
 package vendingmachine;
 
-import model.candy;
-import model.product;
+import model.Candy;
+import model.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+public class CandyVendingMachine implements VendingMachine {
+    private static final int[] VALID_AMOUNTS = {1, 2, 5, 10, 20, 50, 100};
 
-public class candyvendingmachine implements vendingmachine {
-    private List<product> products;
+    private Product[] products;
     private int depositPool;
 
-    public candyvendingmachine() {
-        products = new ArrayList<>();
+    public CandyVendingMachine() {
         depositPool = 0;
-
-        products.add(new candy(1, "Chocolate Bar", 1.5, "Chocolate"));
-        products.add(new candy(2, "Gummy Bears", 1.0, "Gummy"));
-        products.add(new candy(3, "Lollipop", 0.5, "Cherry"));
+        products = new Product[] {
+                new Candy(1, "Chocolate Bar", 1.5, "Chocolate"),
+                new Candy(2, "Gummy Bears", 1.0, "Gummy"),
+                new Candy(3, "Lollipop", 0.5, "Cherry")
+        };
     }
 
     @Override
     public void addCurrency(int amount) {
-        if (amount == 1 || amount == 2 || amount == 5 || amount == 10 ||
-                amount == 20 || amount == 50 || amount == 100 || amount == 200 ||
-                amount == 500 || amount == 1000) {
+        if (isValidAmount(amount)) {
             depositPool += amount;
         } else {
             throw new IllegalArgumentException("Invalid currency amount");
         }
     }
 
+    private boolean isValidAmount(int amount) {
+        for (int validAmount : VALID_AMOUNTS) {
+            if (validAmount == amount) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public product request(int productId) {
-        for (product product : products) {
+    public Product request(int productId) {
+        for (Product product : products) {
             if (product.getId() == productId) {
                 if (depositPool >= product.getPrice()) {
                     depositPool -= product.getPrice();
@@ -54,7 +60,7 @@ public class candyvendingmachine implements vendingmachine {
 
     @Override
     public String getDescription(int productId) {
-        for (product product : products) {
+        for (Product product : products) {
             if (product.getId() == productId) {
                 return product.getDescription();
             }
@@ -69,9 +75,9 @@ public class candyvendingmachine implements vendingmachine {
 
     @Override
     public String[] getProducts() {
-        String[] productDescriptions = new String[products.size()];
-        for (int i = 0; i < products.size(); i++) {
-            product product = products.get(i);
+        String[] productDescriptions = new String[products.length];
+        for (int i = 0; i < products.length; i++) {
+            Product product = products[i];
             productDescriptions[i] = product.getId() + ", " + product.getName() + ", $" + product.getPrice();
         }
         return productDescriptions;

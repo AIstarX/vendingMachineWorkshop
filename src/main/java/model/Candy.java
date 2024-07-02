@@ -1,9 +1,9 @@
 package model;
 
-public class candy extends product {
+public class Candy extends Product {
     private String flavor;
 
-    public candy(int id, String name, double price, String flavor) {
+    public Candy(int id, String name, double price, String flavor) {
         super(id, name, price);
         this.flavor = flavor;
     }
