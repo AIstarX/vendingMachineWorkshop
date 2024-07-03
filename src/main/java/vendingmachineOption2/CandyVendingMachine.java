@@ -1,11 +1,10 @@
-package vendingmachine;
+package vendingmachineOption2;
 
-import model.Candy;
-import model.Product;
+import modelOption2.Product;
+import modelOption2.Candy;
 
 public class CandyVendingMachine implements VendingMachine {
     private static final int[] VALID_AMOUNTS = {1, 2, 5, 10, 20, 50, 100};
-
     private Product[] products;
     private int depositPool;
 
@@ -62,7 +61,7 @@ public class CandyVendingMachine implements VendingMachine {
     public String getDescription(int productId) {
         for (Product product : products) {
             if (product.getId() == productId) {
-                return product.getDescription();
+                return product.examine();
             }
         }
         return "Product not found";
@@ -78,7 +77,7 @@ public class CandyVendingMachine implements VendingMachine {
         String[] productDescriptions = new String[products.length];
         for (int i = 0; i < products.length; i++) {
             Product product = products[i];
-            productDescriptions[i] = product.getId() + ", " + product.getName() + ", $" + product.getPrice();
+            productDescriptions[i] = product.getId() + ", " + product.getProductName() + ", $" + product.getPrice();
         }
         return productDescriptions;
     }

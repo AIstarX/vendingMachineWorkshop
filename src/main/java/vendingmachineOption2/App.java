@@ -1,6 +1,6 @@
-package vendingmachine;
+package vendingmachineOption2;
 
-import model.Product;
+import modelOption2.Product;
 
 public class App {
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class App {
         }
 
         Product purchasedProduct = vm.request(1);
-        System.out.println("Purchased: " + purchasedProduct.getDescription());
+        System.out.println("Purchased: " + purchasedProduct.examine());
 
         int change = vm.endSession();
         System.out.println("Change returned: " + change);

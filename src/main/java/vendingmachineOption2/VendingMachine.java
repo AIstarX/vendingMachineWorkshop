@@ -1,6 +1,6 @@
-package vendingmachine;
+package vendingmachineOption2;
 
-import model.Product;
+import modelOption2.Product;
 
 public interface VendingMachine {
     void addCurrency(int amount);
